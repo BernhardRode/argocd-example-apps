@@ -1,4 +1,10 @@
-apiVersion: v1
-kind: Namespace
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
 metadata:
-  name: helm-guestbook-yipiii
+  name: guestbook-gateway
+spec:
+  # gatewayClassName: example-class
+  listeners:
+    - name: http
+      protocol: HTTP
+      port: 80
