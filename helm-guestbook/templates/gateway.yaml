@@ -1,10 +1,21 @@
-# apiVersion: gateway.networking.k8s.io/v1
-# kind: Gateway
-# metadata:
-#   name: guestbook-gateway
-# spec:
-#   # gatewayClassName: example-class
-#   listeners:
-#     - name: http
-#       protocol: HTTP
-#       port: 80
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/ip-address-type: dualstack
+    external-dns.alpha.kubernetes.io/hostname: argocd.development.idp.beg-dev.io
+
+  name: {{ template "helm-guestbook.fullname" . }}
+spec:
+  rules:
+  - host: argocd.development.idp.beg-dev.io
+    http:
+      paths:
+      - path: /
+        backend:
+          service:
+            name: {{ template "helm-guestbook.fullname" . }}
+            port:
+              number: 80
+        pathType: Prefix
