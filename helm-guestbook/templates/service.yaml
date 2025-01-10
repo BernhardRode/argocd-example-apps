@@ -32,6 +32,7 @@ spec:
   ingressClassName: alb
   annotations:
     alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
     nginx.ingress.kubernetes.io/rewrite-target: /
   rules:
   - http:
