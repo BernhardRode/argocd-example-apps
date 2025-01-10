@@ -31,6 +31,7 @@ metadata:
 spec:
   ingressClassName: alb
   annotations:
+    alb.ingress.kubernetes.io/scheme: internet-facing
     nginx.ingress.kubernetes.io/rewrite-target: /
   rules:
   - http:
