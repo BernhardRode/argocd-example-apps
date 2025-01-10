@@ -22,7 +22,12 @@ spec:
 apiVersion: v1
 kind: Ingress
 metadata:
-  name: {{ template "helm-guestbook.fullname" . }}
+  name: {{ template "helm-guestbook.fullname" . }}-ingress
+  labels:
+    app: {{ template "helm-guestbook.name" . }}
+    chart: {{ template "helm-guestbook.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
 spec:
   ingressClassName: alb
   annotations:
