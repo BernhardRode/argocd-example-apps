@@ -18,29 +18,29 @@ spec:
     app: {{ template "helm-guestbook.name" . }}
     release: {{ .Release.Name }}
 
----
-apiVersion: v1
-kind: Ingress
-metadata:
-  name: {{ template "helm-guestbook.fullname" . }}
-  labels:
-    app: {{ template "helm-guestbook.name" . }}
-    chart: {{ template "helm-guestbook.chart" . }}
-    release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
-spec:
-  ingressClassName: alb
-  annotations:
-    alb.ingress.kubernetes.io/scheme: internet-facing
-    alb.ingress.kubernetes.io/target-type: ip
-    nginx.ingress.kubernetes.io/rewrite-target: /
-  rules:
-  - http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: {{ template "helm-guestbook.fullname" . }}
-            port:
-              number: 80    
+# ---
+# apiVersion: v1
+# kind: Ingress
+# metadata:
+#   name: {{ template "helm-guestbook.fullname" . }}
+#   labels:
+#     app: {{ template "helm-guestbook.name" . }}
+#     chart: {{ template "helm-guestbook.chart" . }}
+#     release: {{ .Release.Name }}
+#     heritage: {{ .Release.Service }}
+# spec:
+#   ingressClassName: alb
+#   annotations:
+#     alb.ingress.kubernetes.io/scheme: internet-facing
+#     alb.ingress.kubernetes.io/target-type: ip
+#     nginx.ingress.kubernetes.io/rewrite-target: /
+#   rules:
+#   - http:
+#       paths:
+#       - path: /
+#         pathType: Prefix
+#         backend:
+#           service:
+#             name: {{ template "helm-guestbook.fullname" . }}
+#             port:
+#               number: 80    
