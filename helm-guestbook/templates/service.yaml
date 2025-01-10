@@ -9,7 +9,10 @@ metadata:
     heritage: {{ .Release.Service }}
 spec:
   # type: {{ .Values.service.type }}
-  type: NodePort
+  type: LoadBalancer
+  annotations:
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
   ports:
     - port: {{ .Values.service.port }}
       targetPort: http
@@ -19,29 +22,29 @@ spec:
     app: {{ template "helm-guestbook.name" . }}
     release: {{ .Release.Name }}
 
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: {{ template "helm-guestbook.fullname" . }}-ingress
-  labels:
-    app: {{ template "helm-guestbook.name" . }}
-    chart: {{ template "helm-guestbook.chart" . }}
-    release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
-spec:
-  ingressClassName: alb
-  annotations:
-    alb.ingress.kubernetes.io/scheme: internet-facing
-    alb.ingress.kubernetes.io/target-type: ip
-    nginx.ingress.kubernetes.io/rewrite-target: /
-  rules:
-  - http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: {{ template "helm-guestbook.fullname" . }}
-            port:
-              number: 80    
+# ---
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: {{ template "helm-guestbook.fullname" . }}-ingress
+#   labels:
+#     app: {{ template "helm-guestbook.name" . }}
+#     chart: {{ template "helm-guestbook.chart" . }}
+#     release: {{ .Release.Name }}
+#     heritage: {{ .Release.Service }}
+# spec:
+#   ingressClassName: alb
+#   annotations:
+#     alb.ingress.kubernetes.io/scheme: internet-facing
+#     alb.ingress.kubernetes.io/target-type: ip
+#     nginx.ingress.kubernetes.io/rewrite-target: /
+#   rules:
+#   - http:
+#       paths:
+#       - path: /
+#         pathType: Prefix
+#         backend:
+#           service:
+#             name: {{ template "helm-guestbook.fullname" . }}
+#             port:
+#               number: 80    
