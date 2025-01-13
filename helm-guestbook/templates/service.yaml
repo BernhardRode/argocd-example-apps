@@ -32,6 +32,7 @@ metadata:
 spec:
   ingressClassName: alb
   annotations:
+    alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: instance
     #alb.ingress.kubernetes.io/group.name: apps
   #   alb.ingress.kubernetes.io/scheme: internet-facing
@@ -41,6 +42,7 @@ spec:
     # external-dns.alpha.kubernetes.io/hostname: guestbook.development.idp.beg-dev.io
     # alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS": 443}]'
   rules:
+    - host: argocd.example.com
   - http:
       paths:
       - path: /
