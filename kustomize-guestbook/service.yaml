@@ -6,7 +6,7 @@ metadata:
   namespace: echoserver
   annotations:
     alb.ingress.kubernetes.io/scheme: internet-facing
-    alb.ingress.kubernetes.io/target-type: instance
+    alb.ingress.kubernetes.io/target-type: ip
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS": 443}]'
     alb.ingress.kubernetes.io/certificate-arn: "arn:aws:acm:eu-north-1:513821444862:certificate/f89e8d71-7ff1-4df6-826d-a686886a951a"
     external-dns.alpha.kubernetes.io/hostname: echoserver.development.idp.beg-dev.io
