@@ -11,22 +11,6 @@ metadata:
   labels:
     app: postgresql
 spec:
-  storageClassName: gp3
-  capacity:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 1Gi
----
-kind: PersistentVolumeClaim
-apiVersion: v1
-metadata:
-  name: postgresql-gp2
-  namespace: keycloak
-  labels:
-    app: postgresql
-spec:
   storageClassName: gp2
   capacity:
   accessModes:
