@@ -45,5 +45,4 @@ spec:
         backend:
           service:
             name: {{ template "helm-guestbook.fullname" . }}
-            port:
-              number: 80    
+            port: 80    
