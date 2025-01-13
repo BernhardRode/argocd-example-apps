@@ -9,10 +9,10 @@ metadata:
     heritage: {{ .Release.Service }}
 spec:
   # type: {{ .Values.service.type }}
-  type: LoadBalancer
-  annotations:
-    alb.ingress.kubernetes.io/scheme: internet-facing
-    alb.ingress.kubernetes.io/target-type: ip
+  type: ClusterIP
+  # annotations:
+  #   alb.ingress.kubernetes.io/scheme: internet-facing
+  #   alb.ingress.kubernetes.io/target-type: ip
     # external-dns.alpha.kubernetes.io/hostname: guestbook.development.idp.beg-dev.io
     # alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS": 443}]'
   ports:
