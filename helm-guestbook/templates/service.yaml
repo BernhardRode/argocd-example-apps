@@ -1,3 +1,79 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: echoserver
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: echoserver
+  namespace: echoserver
+spec:
+  ports:
+    - port: 80
+      targetPort: 8080
+      protocol: TCP
+  type: NodePort
+  selector:
+    app: echoserver
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: echoserver
+  namespace: echoserver
+spec:
+  selector:
+    matchLabels:
+      app: echoserver
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: echoserver
+    spec:
+      containers:
+        - image: gcr.io/google_containers/echoserver:1.4
+          imagePullPolicy: Always
+          name: echoserver
+          ports:
+            - containerPort: 8080
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: echoserver
+  namespace: echoserver
+  annotations:
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: instance
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS": 443}]'
+    # alb.ingress.kubernetes.io/certificate-arn: "arn:aws:acm:eu-north-1:513821444862:certificate/803936f5-72bf-4e5e-b9cc-d1902cdea81c"
+    alb.ingress.kubernetes.io/certificate-arn: "arn:aws:acm:eu-north-1:513821444862:certificate/f89e8d71-7ff1-4df6-826d-a686886a951a"
+    external-dns.alpha.kubernetes.io/hostname: echoserver.development.idp.beg-dev.io
+    # alb.ingress.kubernetes.io/subnets: subnet-0830f70e51ed9baf1, subnet-03762a3abd2b9fa45, subnet-0f13345d036a70dd7
+spec:
+  ingressClassName: alb
+  rules:
+    - host: echoserver.development.idp.beg-dev.io
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: echoserver
+                port:
+                  number: 80
+                  
 # apiVersion: v1
 # kind: Service
 # metadata:
