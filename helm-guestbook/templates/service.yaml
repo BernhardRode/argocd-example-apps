@@ -14,7 +14,7 @@ spec:
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: ip
     external-dns.alpha.kubernetes.io/hostname: guestbook.development.idp.beg-dev.io
-    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS": 443}]'
+    # alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS": 443}]'
   ports:
     - port: {{ .Values.service.port }}
       targetPort: http
