@@ -54,10 +54,6 @@ metadata:
     alb.ingress.kubernetes.io/certificate-arn: "arn:aws:acm:eu-north-1:513821444862:certificate/f89e8d71-7ff1-4df6-826d-a686886a951a"
     alb.ingress.kubernetes.io/actions.ssl-redirect: '{"Type": "redirect", "RedirectConfig": { "Protocol": "HTTPS", "Port": "443", "StatusCode": "HTTP_301"}}'
     external-dns.alpha.kubernetes.io/hostname: echoserver.development.idp.beg-dev.io
-    # alb.ingress.kubernetes.io/certificate-arn: "arn:aws:acm:eu-north-1:513821444862:certificate/f89e8d71-7ff1-4df6-826d-a686886a951a"
-    # alb.ingress.kubernetes.io/certificate-arn: "arn:aws:acm:eu-north-1:513821444862:certificate/803936f5-72bf-4e5e-b9cc-d1902cdea81c"
-    # alb.ingress.kubernetes.io/certificate-arn: "{{ (lookup "v1" "Secret" .Values.certificateSecretName "echoserver").data.arn | b64dec }}"
-    # alb.ingress.kubernetes.io/subnets: subnet-0830f70e51ed9baf1, subnet-03762a3abd2b9fa45, subnet-0f13345d036a70dd7
 spec:
   ingressClassName: alb
   rules:
