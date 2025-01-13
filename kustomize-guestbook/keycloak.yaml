@@ -45,7 +45,7 @@ spec:
             requests:
               cpu: 100m
               memory: 300Mi
-          image: docker.io/library/postgres:alpine
+          image: docker.io/library/postgres:15.3-alpine3.18
           envFrom:
             - secretRef:
                 name: postgresql-config
