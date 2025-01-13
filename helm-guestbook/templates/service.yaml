@@ -9,57 +9,59 @@
 #     heritage: {{ .Release.Service }}
 # spec:
 #   # type: {{ .Values.service.type }}
-#   type: NodePort
+#   type: ClusterIP
+#   ports:
+#     - port: {{ .Values.service.port }}
+#       targetPort: http
+#       protocol: TCP
+#       name: http
+#   selector:
+#     app: {{ template "helm-guestbook.name" . }}
+#     release: {{ .Release.Name }}
+# ---
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: helm-guestbook
+# spec:
 #   ports:
 #     - port: 80
 #       targetPort: 80
 #       protocol: TCP
+#   type: NodePort
 #   selector:
-#     app: {{ template "helm-guestbook.name" . }}
+#     app: helm-guestbook
 #     release: {{ .Release.Name }}
-apiVersion: v1
-kind: Service
-metadata:
-  name: helm-guestbook
-spec:
-  ports:
-    - port: 80
-      targetPort: 80
-      protocol: TCP
-  type: NodePort
-  selector:
-    app: helm-guestbook
-    release: {{ .Release.Name }}
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: {{ template "helm-guestbook.fullname" . }}-ingress
-  labels:
-    app: helm-guestbook
-    chart: {{ template "helm-guestbook.chart" . }}
-    release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
-spec:
-  ingressClassName: alb
-  annotations:
-    alb.ingress.kubernetes.io/scheme: internet-facing
-    alb.ingress.kubernetes.io/target-type: instance
-    external-dns.alpha.kubernetes.io/hostname: guestbook.development.idp.beg-dev.io
-    #alb.ingress.kubernetes.io/group.name: apps
-  #   alb.ingress.kubernetes.io/scheme: internet-facing
-  #   alb.ingress.kubernetes.io/target-type: ip
-  #   alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
-    # nginx.ingress.kubernetes.io/rewrite-target: /
-    # alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS": 443}]'
-  rules:
-    - host: argocd.example.com
-  - http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: {{ template "helm-guestbook.fullname" . }}
-            port: 
-              number: 80
+# ---
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: {{ template "helm-guestbook.fullname" . }}-ingress
+#   labels:
+#     app: helm-guestbook
+#     chart: {{ template "helm-guestbook.chart" . }}
+#     release: {{ .Release.Name }}
+#     heritage: {{ .Release.Service }}
+# spec:
+#   ingressClassName: alb
+#   annotations:
+#     alb.ingress.kubernetes.io/scheme: internet-facing
+#     alb.ingress.kubernetes.io/target-type: instance
+#     external-dns.alpha.kubernetes.io/hostname: guestbook.development.idp.beg-dev.io
+#     #alb.ingress.kubernetes.io/group.name: apps
+#   #   alb.ingress.kubernetes.io/scheme: internet-facing
+#   #   alb.ingress.kubernetes.io/target-type: ip
+#   #   alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
+#     # nginx.ingress.kubernetes.io/rewrite-target: /
+#     # alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS": 443}]'
+#   rules:
+#     - host: argocd.example.com
+#   - http:
+#       paths:
+#       - path: /
+#         pathType: Prefix
+#         backend:
+#           service:
+#             name: {{ template "helm-guestbook.fullname" . }}
+#             port: 
+#               number: 80
