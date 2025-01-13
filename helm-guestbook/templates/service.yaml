@@ -10,11 +10,6 @@ metadata:
 spec:
   # type: {{ .Values.service.type }}
   type: ClusterIP
-  # annotations:
-  #   alb.ingress.kubernetes.io/scheme: internet-facing
-  #   alb.ingress.kubernetes.io/target-type: ip
-    # external-dns.alpha.kubernetes.io/hostname: guestbook.development.idp.beg-dev.io
-    # alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS": 443}]'
   ports:
     - port: {{ .Values.service.port }}
       targetPort: http
@@ -39,7 +34,9 @@ spec:
   annotations:
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: ip
-    nginx.ingress.kubernetes.io/rewrite-target: /
+    # nginx.ingress.kubernetes.io/rewrite-target: /
+    # external-dns.alpha.kubernetes.io/hostname: guestbook.development.idp.beg-dev.io
+    # alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS": 443}]'
   rules:
   - http:
       paths:
