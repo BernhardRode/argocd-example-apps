@@ -24,42 +24,42 @@ metadata:
 spec:
   ports:
     - port: 80
-      targetPort: 8080
+      targetPort: 80
       protocol: TCP
   type: NodePort
   selector:
     app: {{ template "helm-guestbook.name" . }}
     release: {{ .Release.Name }}
-# ---
-# apiVersion: networking.k8s.io/v1
-# kind: Ingress
-# metadata:
-#   name: {{ template "helm-guestbook.fullname" . }}-ingress
-#   labels:
-#     app: {{ template "helm-guestbook.name" . }}
-#     chart: {{ template "helm-guestbook.chart" . }}
-#     release: {{ .Release.Name }}
-#     heritage: {{ .Release.Service }}
-# spec:
-#   ingressClassName: alb
-#   annotations:
-#     alb.ingress.kubernetes.io/scheme: internet-facing
-#     alb.ingress.kubernetes.io/target-type: instance
-#     external-dns.alpha.kubernetes.io/hostname: guestbook.development.idp.beg-dev.io
-#     #alb.ingress.kubernetes.io/group.name: apps
-#   #   alb.ingress.kubernetes.io/scheme: internet-facing
-#   #   alb.ingress.kubernetes.io/target-type: ip
-#   #   alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
-#     # nginx.ingress.kubernetes.io/rewrite-target: /
-#     # alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS": 443}]'
-#   rules:
-#     - host: argocd.example.com
-#   - http:
-#       paths:
-#       - path: /
-#         pathType: Prefix
-#         backend:
-#           service:
-#             name: {{ template "helm-guestbook.fullname" . }}
-#             port: 
-#               number: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ template "helm-guestbook.fullname" . }}-ingress
+  labels:
+    app: {{ template "helm-guestbook.name" . }}
+    chart: {{ template "helm-guestbook.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  ingressClassName: alb
+  annotations:
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: instance
+    external-dns.alpha.kubernetes.io/hostname: guestbook.development.idp.beg-dev.io
+    #alb.ingress.kubernetes.io/group.name: apps
+  #   alb.ingress.kubernetes.io/scheme: internet-facing
+  #   alb.ingress.kubernetes.io/target-type: ip
+  #   alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
+    # nginx.ingress.kubernetes.io/rewrite-target: /
+    # alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS": 443}]'
+  rules:
+    - host: argocd.example.com
+  - http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: {{ template "helm-guestbook.fullname" . }}
+            port: 
+              number: 80
