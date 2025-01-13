@@ -32,20 +32,20 @@ spec:
             requests:
               memory: "64Mi"
               cpu: "250m"
-# ---
-# apiVersion: v1
-# kind: Service
-# metadata:
-#   name: echoserver
-#   namespace: echoserver
-# spec:
-#   ports:
-#     - port: 80
-#       targetPort: 8080
-#       protocol: TCP
-#   type: NodePort
-#   selector:
-#     app: echoserver              
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: echoserver
+  namespace: echoserver
+spec:
+  ports:
+    - port: 80
+      targetPort: 8080
+      protocol: TCP
+  type: NodePort
+  selector:
+    app: echoserver
 # ---
 # apiVersion: networking.k8s.io/v1
 # kind: Ingress
@@ -58,7 +58,7 @@ spec:
 #     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS": 443}]'
 #     # alb.ingress.kubernetes.io/certificate-arn: "arn:aws:acm:eu-north-1:513821444862:certificate/803936f5-72bf-4e5e-b9cc-d1902cdea81c"
 #     # alb.ingress.kubernetes.io/certificate-arn: "arn:aws:acm:eu-north-1:513821444862:certificate/f89e8d71-7ff1-4df6-826d-a686886a951a"
-#     # alb.ingress.kubernetes.io/certificate-arn: "{{ (lookup "v1" "Secret" .Values.certificateSecretName "echoserver").data.arn | b64dec }}"    
+#     # alb.ingress.kubernetes.io/certificate-arn: "{{ (lookup "v1" "Secret" .Values.certificateSecretName "echoserver").data.arn | b64dec }}"
 #     external-dns.alpha.kubernetes.io/hostname: echoserver.development.idp.beg-dev.io
 #     # alb.ingress.kubernetes.io/subnets: subnet-0830f70e51ed9baf1, subnet-03762a3abd2b9fa45, subnet-0f13345d036a70dd7
 # spec:
@@ -140,5 +140,5 @@ spec:
 #         backend:
 #           service:
 #             name: {{ template "helm-guestbook.fullname" . }}
-#             port: 
+#             port:
 #               number: 80
