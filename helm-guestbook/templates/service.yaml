@@ -20,7 +20,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ template "helm-guestbook.name" . }}
+  name: helm-guestbook
 spec:
   ports:
     - port: 80
@@ -28,7 +28,7 @@ spec:
       protocol: TCP
   type: NodePort
   selector:
-    app: {{ template "helm-guestbook.name" . }}
+    app: helm-guestbook
     release: {{ .Release.Name }}
 ---
 apiVersion: networking.k8s.io/v1
@@ -36,7 +36,7 @@ kind: Ingress
 metadata:
   name: {{ template "helm-guestbook.fullname" . }}-ingress
   labels:
-    app: {{ template "helm-guestbook.name" . }}
+    app: helm-guestbook
     chart: {{ template "helm-guestbook.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
