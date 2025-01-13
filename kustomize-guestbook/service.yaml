@@ -10,6 +10,7 @@ metadata:
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS": 443}]'
     alb.ingress.kubernetes.io/certificate-arn: "arn:aws:acm:eu-north-1:513821444862:certificate/f89e8d71-7ff1-4df6-826d-a686886a951a"
     external-dns.alpha.kubernetes.io/hostname: echoserver.development.idp.beg-dev.io
+    alb.ingress.kubernetes.io/host: echoserver.development.idp.beg-dev.io
     alb.ingress.kubernetes.io/ssl-redirect: 443
 spec:
   ingressClassName: alb
