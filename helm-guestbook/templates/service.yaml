@@ -31,10 +31,10 @@ metadata:
     heritage: {{ .Release.Service }}
 spec:
   ingressClassName: alb
-  annotations:
-    alb.ingress.kubernetes.io/scheme: internet-facing
-    alb.ingress.kubernetes.io/target-type: ip
-    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
+  # annotations:
+  #   alb.ingress.kubernetes.io/scheme: internet-facing
+  #   alb.ingress.kubernetes.io/target-type: ip
+  #   alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
     # nginx.ingress.kubernetes.io/rewrite-target: /
     # external-dns.alpha.kubernetes.io/hostname: guestbook.development.idp.beg-dev.io
     # alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS": 443}]'
@@ -47,4 +47,3 @@ spec:
           service:
             name: {{ template "helm-guestbook.fullname" . }}
             port: 80
-            targetPort: 80
