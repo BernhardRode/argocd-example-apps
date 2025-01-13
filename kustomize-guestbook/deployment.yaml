@@ -1,0 +1,41 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: backstage
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backstage
+  namespace: backstage
+  labels:
+    app: backstage
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        app: backstage
+    template:
+      metadata:
+        labels:
+          app: backstage
+      spec:
+        containers:
+          - name: backstage
+            image: ghcr.io/cnoe-io/backstage-app:sha256-f96950b9eae5d46a890e16621d2ca3dc6f94eac86b8f6c208bde3eb6b122d78f
+            ports:
+              - containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backstage-kustomize
+  namespace: backstage
+spec:
+  ports:
+    - port: 80
+      targetPort: 3000
+      protocol: TCP
+  selector:
+    app: backstage
