@@ -11,21 +11,28 @@ metadata:
   namespace: backstage
   labels:
     app: backstage
-  spec:
-    replicas: 1
-    selector:
-      matchLabels:
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backstage
+  template:
+    metadata:
+      labels:
         app: backstage
-    template:
-      metadata:
-        labels:
-          app: backstage
-      spec:
-        containers:
-          - name: backstage
-            image: ghcr.io/cnoe-io/backstage-app:sha256-f96950b9eae5d46a890e16621d2ca3dc6f94eac86b8f6c208bde3eb6b122d78f
-            ports:
-              - containerPort: 3000
+    spec:
+      containers:
+        - name: backstage
+          image: ghcr.io/cnoe-io/backstage-app:sha256-f96950b9eae5d46a890e16621d2ca3dc6f94eac86b8f6c208bde3eb6b122d78f
+          resources:
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+            requests:
+              memory: "256Mi"
+              cpu: "250m"
+          ports:
+            - containerPort: 3000
 ---
 apiVersion: v1
 kind: Service
