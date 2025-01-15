@@ -32,7 +32,7 @@ spec:
   target:
     name: keycloak-config-debug
   data:
-    - secretKey: host
+    - secretKey: url
       remoteRef:
         key: /ebbo/idp/ebbo/f70b0f0/keycloak-url
     - secretKey: user
@@ -41,6 +41,7 @@ spec:
     - secretKey: password
       remoteRef:
         key: /ebbo/idp/ebbo/f70b0f0/keycloak-password
+
 ---
 apiVersion: apps/v1
 kind: Deployment
