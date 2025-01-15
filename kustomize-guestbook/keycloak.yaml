@@ -22,7 +22,7 @@ spec:
 apiVersion: external-secrets.io/v1beta1
 kind: ExternalSecret
 metadata:
-  name: keycloak-config-debug
+  name: keycloak-config
   namespace: keycloak
 spec:
   refreshInterval: 1h
@@ -32,15 +32,21 @@ spec:
   target:
     name: keycloak-config-debug
   data:
-    - secretKey: url
+    - secretKey: URL
       remoteRef:
         key: /ebbo/idp/ebbo/f70b0f0/keycloak-url
-    - secretKey: user
+    - secretKey: KEYCLOAK_USER
       remoteRef:
         key: /ebbo/idp/ebbo/f70b0f0/keycloak-user
-    - secretKey: password
+    - secretKey: KEYCLOACK_PASSWORD
       remoteRef:
         key: /ebbo/idp/ebbo/f70b0f0/keycloak-password
+    - secretKey: POSTGRES_URL
+      remoteRef:
+        key: /ebbo/idp/ebbo/f70b0f0/postgres-endpoint
+    - secretKey: POSTGRES_READER_URL
+      remoteRef:
+        key: /ebbo/idp/ebbo/f70b0f0/postgres-reader-endpoint
 
 ---
 apiVersion: apps/v1
@@ -64,12 +70,9 @@ spec:
         - name: keycloak
           image: quay.io/keycloak/keycloak:26.1
           args: ["start-dev"]
-
           envFrom:
             - secretRef:
-                name: keycloak-config-debug
-            - secretRef:
-                name: postgres-config-debug
+                name: keycloak-config
           ports:
             - name: http
               containerPort: 8080
