@@ -81,7 +81,7 @@ spec:
 
           envFrom:
             - secretRef:
-                name: keycloak-config-debugs
+                name: keycloak-config-debug
           ports:
             - name: http
               containerPort: 8080
