@@ -30,7 +30,7 @@ spec:
     name: cluster-secretstore-sm
     kind: ClusterSecretStore
   target:
-    name: keycloak-config-debug
+    name: keycloak-config
   data:
     - secretKey: URL
       remoteRef:
