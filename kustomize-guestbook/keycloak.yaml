@@ -34,6 +34,29 @@ metadata:
 #     app: keycloak
 #   type: ClusterIP
 ---
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: keycloak-config-debug
+  namespace: external-secrets
+spec:
+  refreshInterval: 1h
+  secretStoreRef:
+    name: cluster-secretstore-sm
+    kind: ClusterSecretStore
+  target:
+    name: keycloak-config-debug
+  data:
+    - secretKey: host
+      remoteRef:
+        key: /ebbo/idp/ebbo/f70b0f0/keycloak-url
+    - secretKey: user
+      remoteRef:
+        key: /ebbo/idp/ebbo/f70b0f0/keycloak-user
+    - secretKey: password
+      remoteRef:
+        key: /ebbo/idp/ebbo/f70b0f0/keycloak-password
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -55,20 +78,20 @@ spec:
         - name: keycloak
           image: quay.io/keycloak/keycloak:22.0.0
           args: ["start-dev"]
+
           env:
             - name: KC_PROXY
               value: "edge"
             - name: KEYCLOAK_ADMIN
-              namespace: external-secrets
               valueFrom:
                 secretKeyRef:
-                  name: keycloak-config
+                  name: keycloak-config-debug
                   key: user
             - name: KEYCLOAK_ADMIN_PASSWORD
               namespace: external-secrets
               valueFrom:
                 secretKeyRef:
-                  name: keycloak-config
+                  name: keycloak-config-debug
                   key: password
           ports:
             - name: http
