@@ -32,7 +32,7 @@ spec:
   target:
     name: keycloak-config
   data:
-    - secretKey: URL
+    - secretKey: KEYCLOAK_URL
       remoteRef:
         key: /ebbo/idp/ebbo/f70b0f0/keycloak-url
     - secretKey: KEYCLOAK_USER
