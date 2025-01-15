@@ -62,14 +62,14 @@ spec:
               namespace: external-secrets
               valueFrom:
                 secretKeyRef:
-                  name: user
-                  key: keycloak-config
+                  name: keycloak-config
+                  key: user
             - name: KEYCLOAK_ADMIN_PASSWORD
               namespace: external-secrets
               valueFrom:
                 secretKeyRef:
-                  name: password
-                  key: keycloak-config
+                  name: keycloak-config
+                  key: password
           ports:
             - name: http
               containerPort: 8080
