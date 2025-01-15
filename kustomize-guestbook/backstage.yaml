@@ -1,0 +1,17 @@
+---
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: backstage-config
+  namespace: backstage
+spec:
+  refreshInterval: 1h
+  secretStoreRef:
+    name: cluster-secretstore-sm
+    kind: ClusterSecretStore
+  target:
+    name: backstage-config
+  data:
+    - secretKey: BACKSTAGE_URL
+      remoteRef:
+        key: /ebbo/idp/ebbo/f70b0f0/backstage-url
