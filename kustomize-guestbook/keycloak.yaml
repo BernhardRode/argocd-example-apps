@@ -68,6 +68,8 @@ spec:
           envFrom:
             - secretRef:
                 name: keycloak-config-debug
+            - secretRef:
+                name: postgres-config-debug
           ports:
             - name: http
               containerPort: 8080
@@ -82,3 +84,5 @@ spec:
             httpGet:
               path: /realms/master
               port: 8080
+---
+
