@@ -38,7 +38,7 @@ apiVersion: external-secrets.io/v1beta1
 kind: ExternalSecret
 metadata:
   name: keycloak-config-debug
-  namespace: external-secrets
+  namespace: keycloak
 spec:
   refreshInterval: 1h
   secretStoreRef:
@@ -78,7 +78,6 @@ spec:
         - name: keycloak
           image: quay.io/keycloak/keycloak:22.0.0
           args: ["start-dev"]
-
           env:
             - name: KC_PROXY
               value: "edge"
