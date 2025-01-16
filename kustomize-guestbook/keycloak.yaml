@@ -15,10 +15,13 @@ spec:
     - secretKey: KC_HOSTNAME
       remoteRef:
         key: /ebbo/idp/ebbo/f70b0f0/keycloak-url
+    - secretKey: KC_DB_URL_HOST
+      remoteRef:
+        key: /ebbo/idp/ebbo/f70b0f0/postgres-endpoint
     - secretKey: KEYCLOAK_ADMIN_USERNAME
       remoteRef:
         key: /ebbo/idp/ebbo/f70b0f0/keycloak-user
-    - secretKey: KEYCLOAK_ADMIN_PASSWORD
+    - secretKey: KC_BOOTSTRAP_ADMIN_PASSWORD
       remoteRef:
         key: /ebbo/idp/ebbo/f70b0f0/keycloak-password
     - secretKey: POSTGRES_DB
