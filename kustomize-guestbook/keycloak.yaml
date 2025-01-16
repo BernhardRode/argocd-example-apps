@@ -36,50 +36,50 @@ spec:
     - secretKey: KC_BOOTSTRAP_ADMIN_PASSWORD
       remoteRef:
         key: /ebbo/idp/ebbo/f70b0f0/keycloak-password
-# ---
-# apiVersion: apps/v1
-# kind: Deployment
-# metadata:
-#   name: keycloak
-#   namespace: keycloak
-#   labels:
-#     app: keycloak
-# spec:
-#   replicas: 1
-#   selector:
-#     matchLabels:
-#       app: keycloak
-#   template:
-#     metadata:
-#       labels:
-#         app: keycloak
-#     spec:
-#       containers:
-#         - name: keycloak
-#           image: quay.io/keycloak/keycloak:26.1
-#           args: ["start-dev"]
-#           env:
-#             - name: KC_DB
-#               value: postgres
-#             - name: KC_DB_INIT
-#               value: true
-#           envFrom:
-#             - secretRef:
-#                 name: keycloak-config
-#           ports:
-#             - name: http
-#               containerPort: 8080
-#           resources:
-#             limits:
-#               memory: "512Mi"
-#               cpu: "500m"
-#             requests:
-#               memory: "256Mi"
-#               cpu: "250m"
-#           readinessProbe:
-#             httpGet:
-#               path: /realms/master
-#               port: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: keycloak
+  namespace: keycloak
+  labels:
+    app: keycloak
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: keycloak
+  template:
+    metadata:
+      labels:
+        app: keycloak
+    spec:
+      containers:
+        - name: keycloak
+          image: quay.io/keycloak/keycloak:26.1
+          args: ["start-dev"]
+          env:
+            - name: KC_DB
+              value: postgres
+            - name: KC_DB_INIT
+              value: true
+          envFrom:
+            - secretRef:
+                name: keycloak-config
+          ports:
+            - name: http
+              containerPort: 8080
+          resources:
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+            requests:
+              memory: "256Mi"
+              cpu: "250m"
+          readinessProbe:
+            httpGet:
+              path: /realms/master
+              port: 8080
 # ---
 # apiVersion: v1
 # kind: Service
