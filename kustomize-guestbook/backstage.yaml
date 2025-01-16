@@ -15,3 +15,28 @@ spec:
     - secretKey: BACKSTAGE_URL
       remoteRef:
         key: /ebbo/idp/ebbo/f70b0f0/backstage-url
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backstage
+  namespace: backstage
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backstage
+  template:
+    metadata:
+      labels:
+        app: backstage
+    spec:
+      containers:
+      
+        - name: backstage
+          image: backstage:1.0.0
+          ports:
+            - name: http
+              containerPort: 7007
+          envFrom:
+            - name: backstage-config

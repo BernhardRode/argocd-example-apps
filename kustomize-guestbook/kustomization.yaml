@@ -3,5 +3,4 @@ kind: Kustomization
 resources:
   - keycloak.yaml
   - pgadmin.yaml
-  # - backstage.yaml
-
+  - backstage.yaml
