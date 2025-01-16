@@ -34,6 +34,13 @@ spec:
       containers:
         - name: backstage
           image: "ghcr.io/cnoe-io/backstage-app:135c0cb26f3e004a27a11edb6a4779035aff9805"
+          resources:
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+            requests:
+              memory: "256Mi"
+              cpu: "250m"
           ports:
             - name: http
               containerPort: 7007
