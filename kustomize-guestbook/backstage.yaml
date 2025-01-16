@@ -12,18 +12,31 @@ spec:
   target:
     name: backstage-config
   data:
-    - secretKey: BACKSTAGE_URL
+    - secretKey: BACKSTAGE_FRONTEND_URL
       remoteRef:
         key: /ebbo/idp/ebbo/f70b0f0/backstage-url
     - secretKey: POSTGRES_HOST
       remoteRef:
         key: /ebbo/idp/ebbo/f70b0f0/postgres-endpoint
+    - secretKey: POSTGRES_PORT
+      remoteRef:
+        key: /ebbo/idp/ebbo/f70b0f0/postgres-port
     - secretKey: POSTGRES_USER
       remoteRef:
         key: /ebbo/idp/ebbo/f70b0f0/postgres-user
     - secretKey: POSTGRES_PASSWORD
       remoteRef:
         key: /ebbo/idp/ebbo/f70b0f0/postgres-password
+    - secretKey: KEYCLOAK_NAME_METADATA
+      remoteRef:
+        key: https://keycloak.development.idp.beg-dev.io/realms/cnoe/.well-known/openid-configuration
+
+  # ARGO_WORKFLOWS_URL: https://${ARGO_WORKFLOWS_DOMAIN_NAME}
+  KEYCLOAK_NAME_METADATA: https://${KEYCLOAK_DOMAIN_NAME}/realms/cnoe/.well-known/openid-configuration
+  KEYCLOAK_CLIENT_SECRET: "${CLIENT_SECRET}"
+  ARGOCD_AUTH_TOKEN: "argocd.token=${argocdToken}"
+  ARGO_CD_URL: "http://argocd-server.argocd.svc.cluster.local/api/v1/"
+
 ---
 apiVersion: apps/v1
 kind: Deployment
