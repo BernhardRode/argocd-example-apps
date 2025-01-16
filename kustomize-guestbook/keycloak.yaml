@@ -18,7 +18,7 @@ spec:
     - secretKey: KC_HOSTNAME_URL
       remoteRef:
         key: /ebbo/idp/ebbo/f70b0f0/keycloak-url
-    - secretKey: KC_HOSTNAME_ADMIN_URL
+    - secretKey: KEYCLOAK_FRONTEND_URL
       remoteRef:
         key: /ebbo/idp/ebbo/f70b0f0/keycloak-url
     - secretKey: KC_DB_URL_HOST
@@ -70,7 +70,7 @@ spec:
             - name: KC_HTTP_ENABLED
               value: "true"
             - name: KC_HOSTNAME_STRICT
-              value: "true"
+              value: "false"
             # - name: HOSTNAME_STRICT
             #   value: "false"
             # - name: KC_HOSTNAME_STRICT
