@@ -61,8 +61,6 @@ spec:
           env:
             - name: KC_DB
               value: postgres
-            - name: KC_DB_INIT
-              value: true
           envFrom:
             - secretRef:
                 name: keycloak-config
