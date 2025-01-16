@@ -58,6 +58,15 @@ spec:
         - name: keycloak
           image: quay.io/keycloak/keycloak:26.1
           args: ["start-dev"]
+          env:
+            - name: KC_HOSTNAME_STRICT_HTTPS
+              value: "false"
+            - name: HOSTNAME_STRICT
+              value: "false"
+            - name: KC_HOSTNAME_STRICT
+              value: "false"
+            - name: KC_HTTP_ENABLED
+              value: "true"
           envFrom:
             - secretRef:
                 name: keycloak-config
