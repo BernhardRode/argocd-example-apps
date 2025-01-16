@@ -59,8 +59,6 @@ spec:
           image: quay.io/keycloak/keycloak:26.1
           args: ["start-dev"]
           env:
-            - name: KC_HOSTNAME_STRICT_HTTPS
-              value: "false"
             - name: HOSTNAME_STRICT
               value: "false"
             - name: KC_HOSTNAME_STRICT
