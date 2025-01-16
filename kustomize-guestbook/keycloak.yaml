@@ -67,6 +67,12 @@ spec:
               value: "false"
             - name: KC_HTTP_ENABLED
               value: "true"
+            - name: KC_PROXY
+              value: "edge"
+            - name: KC_PROXY_ADDRESS_FORWARDING
+              value: "true"
+            - name: KC_HOSTNAME_STRICT_HTTPS
+              value: "false"
           envFrom:
             - secretRef:
                 name: keycloak-config
