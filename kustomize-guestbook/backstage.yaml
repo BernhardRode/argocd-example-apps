@@ -33,7 +33,7 @@ spec:
     spec:
       containers:
         - name: backstage
-          image: backstage:1.0.0
+          image: ghcr.io/cnoe-io/backstage-app:sha256-f96950b9eae5d46a890e16621d2ca3dc6f94eac86b8f6c208bde3eb6b122d78f
           ports:
             - name: http
               containerPort: 7007
