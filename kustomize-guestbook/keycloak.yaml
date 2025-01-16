@@ -15,27 +15,23 @@ spec:
     - secretKey: KC_HOSTNAME
       remoteRef:
         key: /ebbo/idp/ebbo/f70b0f0/keycloak-url
+    - key: KC_DB
+      value: postgres
     - secretKey: KC_DB_URL_HOST
       remoteRef:
         key: /ebbo/idp/ebbo/f70b0f0/postgres-endpoint
+    - secretKey: KC_DB_USERNAME
+      remoteRef:
+        key: /ebbo/idp/ebbo/f70b0f0/postgres-user
+    - secretKey: KC_DB_PASSWORD
+      remoteRef:
+        key: /ebbo/idp/ebbo/f70b0f0/postgres-password
     - secretKey: KEYCLOAK_ADMIN_USERNAME
       remoteRef:
         key: /ebbo/idp/ebbo/f70b0f0/keycloak-user
     - secretKey: KC_BOOTSTRAP_ADMIN_PASSWORD
       remoteRef:
         key: /ebbo/idp/ebbo/f70b0f0/keycloak-password
-    - secretKey: POSTGRES_DB
-      remoteRef:
-        key: /ebbo/idp/ebbo/f70b0f0/postgres-endpoint
-    - secretKey: POSTGRES_READER_BD
-      remoteRef:
-        key: /ebbo/idp/ebbo/f70b0f0/postgres-reader-endpoint
-    - secretKey: POSTGRES_USER
-      remoteRef:
-        key: /ebbo/idp/ebbo/f70b0f0/postgres-user
-    - secretKey: POSTGRES_PASSWORD
-      remoteRef:
-        key: /ebbo/idp/ebbo/f70b0f0/postgres-password
 ---
 apiVersion: apps/v1
 kind: Deployment
