@@ -58,9 +58,6 @@ spec:
         - name: keycloak
           image: quay.io/keycloak/keycloak:26.1
           args: ["start-dev"]
-          env:
-            - name: KC_DB
-              value: postgres
           envFrom:
             - secretRef:
                 name: keycloak-config
