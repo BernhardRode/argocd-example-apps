@@ -12,13 +12,7 @@ spec:
   target:
     name: keycloak-config
   data:
-    - secretKey: KEYCLOAK_FRONTEND_URL
-      remoteRef:
-        key: /ebbo/idp/ebbo/f70b0f0/keycloak-url
-    - secretKey: KC_HOSTNAME_URL
-      remoteRef:
-        key: /ebbo/idp/ebbo/f70b0f0/keycloak-url
-    - secretKey: KEYCLOAK_FRONTEND_URL
+    - secretKey: KC_HOSTNAME
       remoteRef:
         key: /ebbo/idp/ebbo/f70b0f0/keycloak-url
     - secretKey: KC_DB_URL_HOST
@@ -36,7 +30,7 @@ spec:
     - secretKey: KC_DB_PASSWORD
       remoteRef:
         key: /ebbo/idp/ebbo/f70b0f0/postgres-password
-    - secretKey: KEYCLOAK_ADMIN_USERNAME
+    - secretKey: KC_BOOTSTRAP_ADMIN_USERNAME
       remoteRef:
         key: /ebbo/idp/ebbo/f70b0f0/keycloak-user
     - secretKey: KC_BOOTSTRAP_ADMIN_PASSWORD
@@ -65,12 +59,14 @@ spec:
           image: quay.io/keycloak/keycloak:26.1
           args: ["start-dev"]
           env:
-            - name: PROXY_ADDRESS_FORWARDING
-              value: "true"
             - name: KC_HTTP_ENABLED
               value: "true"
-            - name: KC_HOSTNAME_STRICT
-              value: "false"
+            - name: KC_PROXY_HEADERS
+              value: "xforwarded"
+            # - name: PROXY_ADDRESS_FORWARDING
+            #   value: "true"
+            # - name: KC_HOSTNAME_STRICT
+            #   value: "false"
             # - name: HOSTNAME_STRICT
             #   value: "false"
             # - name: KC_HOSTNAME_STRICT
