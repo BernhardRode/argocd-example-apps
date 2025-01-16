@@ -47,27 +47,17 @@ metadata:
 spec:
   resources:
     requests:
-      cpu: "2"
-      memory: "1250M"
+      cpu: "1"
+      memory: 512M"
     limits:
-      cpu: "6"
+      cpu: "4"
       memory: "2250M"
-  db:
-    vendor: postgres
   image: camunda/keycloak:26
-  startOptimized: false 
-  envFrom:
-    - secretRef:
-        name: keycloak-config
-  features:
-    enabled:
-      - user-event-metrics
-      - multi-site 
-  transaction:
-    xaEnabled: false 
-  http:
-    tlsSecret: keycloak-tls-secret
-  instances: 3
+  startOptimized: false
+  # envFrom:
+  #   - secretRef:
+  #       name: keycloak-config
+  instances: 1
 # apiVersion: apps/v1
 # kind: Deployment
 # metadata:
