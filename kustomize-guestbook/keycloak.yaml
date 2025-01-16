@@ -40,9 +40,6 @@ spec:
     - secretKey: POSTGRES_URL
       remoteRef:
         key: /ebbo/idp/ebbo/f70b0f0/postgres-endpoint
-    - secretKey: POSTGRES_URL
-      remoteRef:
-        key: /ebbo/idp/ebbo/f70b0f0/postgres-endpoint
     - secretKey: POSTGRES_READER_URL
       remoteRef:
         key: /ebbo/idp/ebbo/f70b0f0/postgres-reader-endpoint
