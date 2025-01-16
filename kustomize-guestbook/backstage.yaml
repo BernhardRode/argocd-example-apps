@@ -15,6 +15,15 @@ spec:
     - secretKey: BACKSTAGE_URL
       remoteRef:
         key: /ebbo/idp/ebbo/f70b0f0/backstage-url
+    - secretKey: POSTGRES_HOST
+      remoteRef:
+        key: /ebbo/idp/ebbo/f70b0f0/postgres-endpoint
+    - secretKey: POSTGRES_USER
+      remoteRef:
+        key: /ebbo/idp/ebbo/f70b0f0/postgres-user
+    - secretKey: POSTGRES_PASSWORD
+      remoteRef:
+        key: /ebbo/idp/ebbo/f70b0f0/postgres-password
 ---
 apiVersion: apps/v1
 kind: Deployment
