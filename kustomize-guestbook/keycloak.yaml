@@ -15,7 +15,7 @@ spec:
     - secretKey: KC_HOSTNAME
       remoteRef:
         key: /ebbo/idp/ebbo/f70b0f0/keycloak-url
-    - secretKey: KC_DB_URL_HOST
+    - secretKey: KC_DB_URL
       remoteRef:
         key: /ebbo/idp/ebbo/f70b0f0/postgres-endpoint
     - secretKey: KC_DB_USERNAME
@@ -55,6 +55,8 @@ spec:
           env:
             - name: KC_DB
               value: postgres
+            - name: KC_DB_INIT
+              value: true
           envFrom:
             - secretRef:
                 name: keycloak-config
