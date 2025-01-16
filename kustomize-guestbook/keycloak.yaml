@@ -64,7 +64,7 @@ spec:
             - name: KC_PROXY_HEADERS
               value: "xforwarded"
             - name: KC_FEATURES
-              value: "hostname[:v2]"
+              value: "hostname:v2"
             # - name: PROXY_ADDRESS_FORWARDING
             #   value: "true"
             # - name: KC_HOSTNAME_STRICT
